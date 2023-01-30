@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:api_test/importer.dart';
 
-class Top extends StatelessWidget {
+class Top extends ConsumerWidget {
   const Top({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Center(
       child: Column(children: [SearchField(), BuildCardList()]),
     );

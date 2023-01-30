@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:api_test/importer.dart';
 
 class ResultCard extends StatelessWidget {
-  const ResultCard({
-    Key? key,
-  }) : super(key: key);
-
+  const ResultCard({Key? key, this.user}) : super(key: key);
+  final GithubUser? user;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -13,21 +12,9 @@ class ResultCard extends StatelessWidget {
           Container(
             height: 50,
             padding: const EdgeInsets.all(8.0),
-            child: Image.network(
-                'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
+            child: Image.network(this.user!.avatarUrl),
           ),
-          Flexible(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("ユーザー名"),
-                Text(
-                  "詳細～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～",
-                  style: TextStyle(fontSize: 12),
-                )
-              ],
-            ),
-          )
+          Text(this.user!.login)
         ],
       ),
     );
