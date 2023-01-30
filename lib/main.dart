@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'component/searchFeild.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -35,7 +37,9 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(),
+      body: Center(
+        child: Column(children: [SearchField()]),
+      ),
     );
   }
 }
