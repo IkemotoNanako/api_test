@@ -36,9 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(children: [SearchField(), BuildCardList()]),
-      ),
+      body: Top(),
     );
   }
 }
