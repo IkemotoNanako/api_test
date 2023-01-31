@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:api_test/importer.dart';
-
+import '../component/resultCard.dart';
 import '../provider/provider.dart';
 
 class BuildCardList extends ConsumerWidget {

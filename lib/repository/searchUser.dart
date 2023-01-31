@@ -1,6 +1,7 @@
 import 'package:api_test/importer.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import '../core/githubUser.dart';
 
 Future<List<GithubUser>> searchUsers(String searchWord) async {
   final response = await http.get(Uri.https(

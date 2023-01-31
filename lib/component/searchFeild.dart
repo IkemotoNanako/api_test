@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:api_test/importer.dart';
-
 import '../provider/provider.dart';
+import '../repository/searchUser.dart';
 
 class SearchField extends ConsumerWidget {
   const SearchField({
@@ -16,12 +16,9 @@ class SearchField extends ConsumerWidget {
           hintText: '探したいユーザー名を入力',
           labelText: "検索"),
       onChanged: (text) {
-        if (text.length >= 5) {
-          searchUsers(text).then((users) {
-            ref.watch(userProvider.state).update((state) => state = users);
-            print(text);
-          });
-        }
+        searchUsers(text).then((users) {
+          ref.watch(userProvider.notifier).update((state) => state = users);
+        });
       },
     );
   }
