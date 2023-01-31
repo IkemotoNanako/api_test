@@ -2,10 +2,21 @@ import 'package:api_test/importer.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../core/githubUser.dart';
+import '../provider/provider.dart';
 
-Future<List<GithubUser>> searchUsers(String searchWord) async {
-  final response = await http.get(Uri.https(
-      'api.github.com', '/search/users', {'q': searchWord, 'sort': 'stars'}));
+final searchUsersProvider = FutureProvider<List<GithubUser>>((ref) async {
+  final flag = ref.watch(organizationFlagProvider);
+  final response;
+  if (flag == true) {
+    response = await http.get(Uri.https('api.github.com', '/search/users', {
+      'q': ref.watch(searchWordProvider),
+      'sort': 'followers',
+      'type': 'Organizer'
+    }));
+  } else {
+    response = await http.get(Uri.https('api.github.com', '/search/users',
+        {'q': ref.watch(searchWordProvider), 'sort': 'followers'}));
+  }
   if (response.statusCode == 200) {
     List<GithubUser> list = [];
     Map<String, dynamic> decoded = json.decode(response.body);
@@ -16,4 +27,4 @@ Future<List<GithubUser>> searchUsers(String searchWord) async {
   } else {
     throw Exception('Fail to search repository');
   }
-}
+});

@@ -15,10 +15,10 @@ class SearchField extends ConsumerWidget {
           prefixIcon: Icon(Icons.search),
           hintText: '探したいユーザー名を入力',
           labelText: "検索"),
-      onChanged: (text) {
-        searchUsers(text).then((users) {
-          ref.watch(userProvider.notifier).update((state) => state = users);
-        });
+      onChanged: (text) async {
+        ref.watch(searchWordProvider.notifier).update((state) => state = text);
+        final users = await ref.watch(searchUsersProvider.future);
+        ref.watch(userProvider.notifier).update((state) => state = users);
       },
     );
   }
