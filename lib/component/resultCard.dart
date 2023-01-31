@@ -1,34 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:api_test/importer.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../core/githubUser.dart';
 
 class ResultCard extends StatelessWidget {
-  const ResultCard({
-    Key? key,
-  }) : super(key: key);
-
+  const ResultCard({Key? key, this.user}) : super(key: key);
+  final GithubUser? user;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Row(
-        children: [
-          Container(
-            height: 50,
-            padding: const EdgeInsets.all(8.0),
-            child: Image.network(
-                'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
-          ),
-          Flexible(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("ユーザー名"),
-                Text(
-                  "詳細～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～",
-                  style: TextStyle(fontSize: 12),
-                )
-              ],
+    return GestureDetector(
+      onTap: () async {
+        // launchUrl(Uri.parse(this.user!.htmlUrl));
+        final url = Uri.parse(this.user!.htmlUrl);
+        if (await canLaunchUrl(url)) {
+          launchUrl(url);
+        }
+      },
+      child: Card(
+        child: Row(
+          children: [
+            Container(
+              height: 50,
+              padding: const EdgeInsets.all(8.0),
+              child: Image.network(this.user!.avatarUrl),
             ),
-          )
-        ],
+            Text(this.user!.login)
+          ],
+        ),
       ),
     );
   }
