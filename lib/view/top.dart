@@ -1,3 +1,4 @@
+import 'package:api_test/component/switchOrganization.dart';
 import 'package:flutter/material.dart';
 import 'package:api_test/importer.dart';
 import '../component/searchFeild.dart';
@@ -11,7 +12,8 @@ class Top extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Center(
-      child: Column(children: [SearchField(), BuildCardList()]),
+      child: Column(
+          children: [SearchField(), SwitchOrganization(), BuildCardList()]),
     );
   }
 }
