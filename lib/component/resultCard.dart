@@ -10,7 +10,6 @@ class ResultCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        // launchUrl(Uri.parse(this.user!.htmlUrl));
         final url = Uri.parse(this.user!.htmlUrl);
         if (await canLaunchUrl(url)) {
           launchUrl(url);
