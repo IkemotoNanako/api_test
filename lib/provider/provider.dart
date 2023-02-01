@@ -4,3 +4,4 @@ import 'package:api_test/importer.dart';
 final StateProvider<List<GithubUser>> userProvider = StateProvider((ref) => []);
 final organizationFlagProvider = StateProvider((ref) => false);
 final searchWordProvider = StateProvider((ref) => '');
+final codeProvider = StateProvider((ref) => 0);

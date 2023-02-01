@@ -1,3 +1,4 @@
+import 'package:api_test/provider/provider.dart';
 import 'package:api_test/view/top.dart';
 import 'package:flutter/material.dart';
 import 'package:api_test/importer.dart';
@@ -24,8 +25,24 @@ class MyHomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      body: Top(),
-    );
+    var flag = ref.watch(codeProvider);
+    return Scaffold(body: pages(flag));
+  }
+}
+
+Widget pages(flag) {
+  switch (flag) {
+    case 0:
+      return Top();
+    case 1:
+      return Center(
+        child: Text("不正なリクエストが送信されました"),
+      );
+    case 2:
+      return Center(
+        child: Text("検索中"),
+      );
+    default:
+      return Top();
   }
 }
