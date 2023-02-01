@@ -11,7 +11,7 @@ class BuildCardList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final users = ref.watch(userProvider);
-    return users != null
+    return users.length != 0
         ? Expanded(
             child: ListView.builder(
                 padding: const EdgeInsets.all(8),
@@ -21,6 +21,6 @@ class BuildCardList extends ConsumerWidget {
                   return ResultCard(user: user);
                 }),
           )
-        : Container();
+        : Expanded(child: Center(child: Text("検索ワードを変えてください")));
   }
 }
