@@ -14,11 +14,12 @@ class SwitchOrganization extends ConsumerWidget {
     return SwitchListTile(
       title: const Text('組織に限る'),
       value: organizationFlag,
-      onChanged: (bool value) {
+      onChanged: (bool value) async {
         ref
             .watch(organizationFlagProvider.notifier)
             .update((state) => state = value);
-        ref.watch(searchUsersProvider);
+        final users = await ref.watch(searchUsersProvider.future);
+        ref.watch(userProvider.notifier).update((state) => state = users);
       },
       secondary: const Icon(Icons.business),
     );
