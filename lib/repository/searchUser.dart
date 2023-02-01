@@ -11,7 +11,6 @@ final searchUsersProvider = FutureProvider<List<GithubUser>>((ref) async {
     response = await http.get(Uri.https('api.github.com', '/search/users', {
       'q': ref.watch(searchWordProvider) + "type:org",
       'sort': 'followers',
-      'type': 'Organization'
     }));
   } else {
     response = await http.get(Uri.https('api.github.com', '/search/users',
