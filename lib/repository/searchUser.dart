@@ -11,6 +11,7 @@ final searchUsersProvider = FutureProvider<List<GithubUser>>((ref) async {
   final flag = ref.watch(organizationFlagProvider);
   final searchWord = ref.watch(searchWordProvider);
   if (searchWord != "") {
+    // isNotEmpty のほうがよい
     try {
       final http.Response response;
       if (flag == true) {
