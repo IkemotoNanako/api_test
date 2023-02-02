@@ -1,11 +1,12 @@
 import 'package:api_test/provider/provider.dart';
 import 'package:api_test/view/pages.dart';
-import 'package:api_test/view/top.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(ProviderScope(child: MyApp()));
+  /// warning はそのままにしない方が良い。
+  /// ここならconstをつける。
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
