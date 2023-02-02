@@ -27,6 +27,7 @@ class MyHomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    /// 可能ならば final で宣言すること
     var flag = ref.watch(codeProvider);
     return Scaffold(
       body: pages(flag),
