@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'dart:io';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
+
 import '../core/githubUser.dart';
 import '../provider/provider.dart';
 
@@ -10,10 +12,10 @@ final searchUsersProvider = FutureProvider<List<GithubUser>>((ref) async {
   final searchWord = ref.watch(searchWordProvider);
   if (searchWord != "") {
     try {
-      var response;
+      final http.Response response;
       if (flag == true) {
         response = await http.get(Uri.https('api.github.com', '/search/users', {
-          'q': searchWord + "type:org",
+          'q': "${searchWord}type:org",
           'sort': 'followers',
         }));
       } else {
