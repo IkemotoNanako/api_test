@@ -11,7 +11,7 @@ class BuildCardList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final users = ref.watch(userProvider);
-    return users.length != 0
+    return users.length != 0 // <- users.length.isNotEmpty のほうが明瞭
         ? Expanded(
             child: ListView.builder(
                 padding: const EdgeInsets.all(8),
