@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../component/resultCard.dart';
 import '../provider/provider.dart';
 
@@ -11,7 +12,7 @@ class BuildCardList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final users = ref.watch(userProvider);
-    return users.length != 0
+    return users.isNotEmpty // <- users.length.isNotEmpty のほうが明瞭
         ? Expanded(
             child: ListView.builder(
                 padding: const EdgeInsets.all(8),
@@ -21,6 +22,6 @@ class BuildCardList extends ConsumerWidget {
                   return ResultCard(user: user);
                 }),
           )
-        : Expanded(child: Center(child: Text("検索ワードを変えてください")));
+        : const Expanded(child: Center(child: Text("検索ワードを変えてください")));
   }
 }
