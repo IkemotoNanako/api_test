@@ -14,14 +14,16 @@ class Top extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Center(
-      /// 要素ごとに分解できているのはよい
-      child: Column(children: const [
-        /// SafeArea などで囲まないと、検索できない端末が存在している
-        SearchField(),
-        SwitchOrganization(),
-        BuildCardList()
-      ]),
+    return SafeArea(
+      child: Center(
+        /// 要素ごとに分解できているのはよい
+        child: Column(children: const [
+          /// SafeArea などで囲まないと、検索できない端末が存在している
+          SearchField(),
+          SwitchOrganization(),
+          BuildCardList()
+        ]),
+      ),
     );
   }
 }
